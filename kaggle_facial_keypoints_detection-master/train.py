@@ -41,7 +41,6 @@ if __name__ == '__main__':
             train_step.run(feed_dict={face.x: X_train[j:j + read_data.BATCH_SIZE],
                                       face.y_: y_train[j:j + read_data.BATCH_SIZE], face.keep_prob: 0.5})
 
-        # 电脑太渣，用所有训练样本计算train_loss居然死机，只好注释了。
         # train_loss = rmse.eval(feed_dict={x:X_train, y_:y_train, keep_prob: 1.0})
         validation_loss = rmse.eval(feed_dict={face.x: X_valid, face.y_: y_valid, face.keep_prob: 1.0})
 
@@ -79,3 +78,4 @@ if __name__ == '__main__':
 
     output_file.close()
     IdLookupTable.close()
+    

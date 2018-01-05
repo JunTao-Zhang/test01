@@ -9,7 +9,7 @@ SAVE_PATH = '/Users/mimi/Downloads/kaggle/model'
 
 
 VALIDATION_SIZE = 100    #验证集大小
-EPOCHS = 10             #迭代次数
+EPOCHS = 15             #迭代次数
 BATCH_SIZE = 64          #每个batch大小，稍微大一点的batch会更稳定
 EARLY_STOP_PATIENCE = 10 #控制early stopping的参数
 

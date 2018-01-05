@@ -4,16 +4,29 @@ import tensorflow as tf
 import face
 import read_data
 
+checkpoint_dir = '/Users/mimi/Downloads/kaggle/'
+
 if __name__ == '__main__':
     sess = tf.InteractiveSession()
     y_conv, rmse = face.model()
     train_step = tf.train.AdamOptimizer(1e-3).minimize(rmse)
-    ckpt = tf.train.get_checkpoint_state('/Users/mimi/Downloads/kaggle/')    
+    
+    ckpt = tf.train.get_checkpoint_state(checkpoint_dir)    
     if ckpt and ckpt.model_checkpoint_path:
         saver = tf.train.Saver()
+        print(ckpt.model_checkpoint_path)
         saver.restore(sess, ckpt.model_checkpoint_path)
-
+    else:
+        print('error')
     '''
+    saver = tf.train.Saver()
+    ckpt = tf.train.get_checkpoint_state(checkpoint_dir)
+    
+    with tf.Session() as sess:
+        saver.restore(sess, ckpt.model_checkpoint_path)
+        print("Model restored.")
+    '''
+
     X, y = read_data.input_data(test=True)
     y_pred = []
 
@@ -37,5 +50,4 @@ if __name__ == '__main__':
 
     output_file.close()
     IdLookupTable.close()
-    '''
     
